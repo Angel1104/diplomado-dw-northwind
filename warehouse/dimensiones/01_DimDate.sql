@@ -1,15 +1,20 @@
 -- Dimension de tiempo. No existe en el OLTP: se genera para el warehouse,
 -- con una fila por cada fecha del rango de operacion del negocio.
-CREATE TABLE [DimDate] (
-    [DateKey]     INT         NOT NULL,  -- formato AAAAMMDD, ej. 19970704
-    [FullDate]    DATE        NOT NULL,
-    [Day]         TINYINT     NOT NULL,
-    [Month]       TINYINT     NOT NULL,
-    [MonthName]   NVARCHAR(20) NOT NULL,
-    [Quarter]     TINYINT     NOT NULL,
-    [Year]        SMALLINT    NOT NULL,
-    [DayOfWeek]   TINYINT     NOT NULL,  -- 1 = domingo ... 7 = sabado
-    [DayName]     NVARCHAR(20) NOT NULL,
-    [IsWeekend]   BIT         NOT NULL,
-    PRIMARY KEY ([DateKey])
+-- Granularidad y nomenclatura siguiendo el proyecto guia del docente
+-- (mclaure/Data-Management-and-BI, BikeStoresDW).
+CREATE TABLE [dbo].[DimDate]
+(
+	[DateKey]           [int]      NOT NULL CONSTRAINT PK_DimDate PRIMARY KEY,
+	[FullDate]          [date]     NOT NULL,
+	[DayNumberOfWeek]   [tinyint]  NOT NULL,
+	[DayNameOfWeek]     [nvarchar](10) NOT NULL,
+	[DayNumberOfMonth]  [tinyint]  NOT NULL,
+	[DayNumberOfYear]   [smallint] NOT NULL,
+	[WeekNumberOfYear]  [tinyint]  NOT NULL,
+	[MonthName]         [nvarchar](10) NOT NULL,
+	[MonthNumberOfYear] [tinyint]  NOT NULL,
+	[CalendarQuarter]   [tinyint]  NOT NULL,
+	[CalendarYear]      [smallint] NOT NULL,
+	[CalendarSemester]  [tinyint]  NOT NULL
 );
+GO

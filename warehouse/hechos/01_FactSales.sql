@@ -1,31 +1,52 @@
 -- Tabla de hechos. Fusiona Orders + OrderDetails (OLTP): cada fila representa
 -- una linea de venta (un producto dentro de una orden), que es el nivel de
 -- grano mas detallado disponible en el negocio.
-CREATE TABLE [FactSales] (
-    [SalesKey]     BIGINT  IDENTITY(1,1) NOT NULL,
+-- Estructura siguiendo el proyecto guia del docente
+-- (mclaure/Data-Management-and-BI, BikeStoresDW.FactOrders): tres fechas de
+-- negocio (pedido, requerida, envio), cada una con su propia FK a DimDate.
+CREATE TABLE [dbo].[FactSales]
+(
+	[OrderID]         [int]      NOT NULL,
+	[ProductID]       [int]      NOT NULL,
 
-    -- llaves foraneas hacia las dimensiones
-    [OrderDateKey] INT     NOT NULL,  -- FK a DimDate (fecha del pedido)
-    [CustomerKey]  INT     NOT NULL,  -- FK a DimCustomer
-    [EmployeeKey]  INT     NOT NULL,  -- FK a DimEmployee
-    [ProductKey]   INT     NOT NULL,  -- FK a DimProduct
-    [ShipperKey]   INT     NULL,      -- FK a DimShipper
+	[OrderDateKey]    [int]      NOT NULL,
+	[RequiredDateKey] [int]      NOT NULL,
+	[ShippedDateKey]  [int]      NULL,
 
-    -- llaves naturales del origen, utiles para trazabilidad y carga incremental
-    [OrderID]      INT     NOT NULL,
-    [ProductID]    INT     NOT NULL,
+	[CustomerSK]      [int]      NULL,
+	[EmployeeSK]      [int]      NULL,
+	[ProductSK]       [int]      NULL,
+	[ShipperSK]       [int]      NULL,
 
-    -- medidas (hechos numericos)
-    [Quantity]     SMALLINT NOT NULL,
-    [UnitPrice]    MONEY    NOT NULL,
-    [Discount]     REAL     NOT NULL,
-    [LineTotal]    MONEY    NOT NULL,  -- Quantity * UnitPrice * (1 - Discount)
-    [Freight]      MONEY    NULL,
+	[OrderDate]       [date]     NOT NULL,
+	[RequiredDate]    [date]     NOT NULL,
+	[ShippedDate]     [date]     NULL,
 
-    PRIMARY KEY ([SalesKey]),
-    FOREIGN KEY ([OrderDateKey]) REFERENCES [DimDate]     ([DateKey]),
-    FOREIGN KEY ([CustomerKey])  REFERENCES [DimCustomer] ([CustomerKey]),
-    FOREIGN KEY ([EmployeeKey])  REFERENCES [DimEmployee] ([EmployeeKey]),
-    FOREIGN KEY ([ProductKey])   REFERENCES [DimProduct]  ([ProductKey]),
-    FOREIGN KEY ([ShipperKey])   REFERENCES [DimShipper]  ([ShipperKey])
+	[Quantity]        [smallint] NOT NULL,
+	[UnitPrice]       [money]    NOT NULL,
+	[Discount]        [real]     NOT NULL,
+	[LineTotal]       [money]    NOT NULL,  -- calculado por el ETL: Quantity * UnitPrice * (1 - Discount)
+	[Freight]         [money]    NULL
 );
+GO
+
+ALTER TABLE [dbo].[FactSales] ADD CONSTRAINT PK_FactSales PRIMARY KEY(OrderID,ProductID);
+GO
+
+ALTER TABLE [dbo].[FactSales] ADD CONSTRAINT [FK_DimCustomer] FOREIGN KEY([CustomerSK]) REFERENCES [dbo].[DimCustomer] ([CustomerSK]);
+GO
+
+ALTER TABLE [dbo].[FactSales] ADD CONSTRAINT [FK_DimEmployee] FOREIGN KEY([EmployeeSK]) REFERENCES [dbo].[DimEmployee] ([EmployeeSK]);
+GO
+
+ALTER TABLE [dbo].[FactSales] ADD CONSTRAINT [FK_DimProduct] FOREIGN KEY([ProductSK]) REFERENCES [dbo].[DimProduct] ([ProductSK]);
+GO
+
+ALTER TABLE [dbo].[FactSales] ADD CONSTRAINT [FK_DimShipper] FOREIGN KEY([ShipperSK]) REFERENCES [dbo].[DimShipper] ([ShipperSK]);
+GO
+
+ALTER TABLE [dbo].[FactSales] ADD CONSTRAINT [FK_DimDate_OrderDate] FOREIGN KEY([OrderDateKey]) REFERENCES [dbo].[DimDate] ([DateKey]);
+GO
+
+ALTER TABLE [dbo].[FactSales] ADD CONSTRAINT [FK_DimDate_RequiredDate] FOREIGN KEY([RequiredDateKey]) REFERENCES [dbo].[DimDate] ([DateKey]);
+GO
