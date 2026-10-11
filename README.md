@@ -6,20 +6,23 @@ Docente: M.Sc. Juan Marcelo Claure Salinas
 
 ## Integrantes del grupo
 
-- Angel Christian Flores Lazarte ([Angel1104](https://github.com/Angel1104)) — diseño del esquema OLTP y del modelo estrella, scripts SQL base
-- Daniela Zapata ([DanieZapata](https://github.com/DanieZapata)) — proyecto SQL Server (`.sqlproj`) del esquema OLTP
-- Kevin ([kevdev21](https://github.com/kevdev21)) — proyecto SQL Server (`.sqlproj`) del modelo estrella (warehouse)
+- **Angel Christian Flores Lazarte** ([Angel1104](https://github.com/Angel1104)) — diseño del esquema OLTP y del modelo estrella, scripts SQL base, validación contra SQL Server.
+- **Daniela Zapata** ([DanieZapata](https://github.com/DanieZapata)) — Reto 1 (entender el negocio a través de los datos) y proyecto SQL Server (`.sqlproj`) del esquema OLTP.
+- **Kevin** ([kevdev21](https://github.com/kevdev21)) — justificación del diseño del modelo estrella y proyecto SQL Server (`.sqlproj`) del warehouse.
 
 ## Flujo de trabajo del grupo
 
 Cada integrante trabaja en su propia rama y entrega su parte mediante un
 Pull Request hacia `main`:
 
-- `feature/oltp-sqlproj` (Daniela): crea un SQL Server Database Project en
-  Visual Studio e importa el esquema OLTP ya validado en `oltp/tables/`.
-- `feature/warehouse-sqlproj` (Kevin): crea un SQL Server Database Project en
-  Visual Studio con las tablas ya validadas en `warehouse/` (staging,
-  dimensiones y hechos).
+- `feature/reto1-dani` (Daniela): responde el análisis de negocio en
+  [`analisis/reto1-entender-negocio.md`](./analisis/reto1-entender-negocio.md)
+  y luego crea un SQL Server Database Project en Visual Studio importando el
+  esquema OLTP ya validado en `oltp/tables/`.
+- `feature/justificacion-kevin` (Kevin): responde la justificación del modelo
+  en [`analisis/justificacion-modelo-estrella.md`](./analisis/justificacion-modelo-estrella.md)
+  y luego crea un SQL Server Database Project en Visual Studio con las tablas
+  ya validadas en `warehouse/` (staging, dimensiones y hechos).
 
 ## Descripción
 
