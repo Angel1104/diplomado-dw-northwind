@@ -6,9 +6,20 @@ Docente: M.Sc. Juan Marcelo Claure Salinas
 
 ## Integrantes del grupo
 
-- Angel Christian Flores Lazarte
-- Daniela Zapata
-- [pendiente de confirmar]
+- Angel Christian Flores Lazarte ([Angel1104](https://github.com/Angel1104)) — diseño del esquema OLTP y del modelo estrella, scripts SQL base
+- Daniela Zapata ([DanieZapata](https://github.com/DanieZapata)) — proyecto SQL Server (`.sqlproj`) del esquema OLTP
+- Kevin ([kevdev21](https://github.com/kevdev21)) — proyecto SQL Server (`.sqlproj`) del modelo estrella (warehouse)
+
+## Flujo de trabajo del grupo
+
+Cada integrante trabaja en su propia rama y entrega su parte mediante un
+Pull Request hacia `main`:
+
+- `feature/oltp-sqlproj` (Daniela): crea un SQL Server Database Project en
+  Visual Studio e importa el esquema OLTP ya validado en `oltp/tables/`.
+- `feature/warehouse-sqlproj` (Kevin): crea un SQL Server Database Project en
+  Visual Studio con las tablas ya validadas en `warehouse/` (staging,
+  dimensiones y hechos).
 
 ## Descripción
 
