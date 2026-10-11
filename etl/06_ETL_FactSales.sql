@@ -41,13 +41,22 @@ GO
 --       INNER JOIN dbo.DimDate dRequired ON CAST(o.RequiredDate AS date) = dRequired.FullDate
 --       LEFT  JOIN dbo.DimDate dShipped  ON CAST(o.ShippedDate AS date) = dShipped.FullDate
 --           -- LEFT JOIN porque ShippedDate puede ser NULL (orden aun no enviada)
---       LEFT JOIN dbo.DimCustomer dc ON o.CustomerID = dc.CustomerID
+--       LEFT JOIN dbo.DimCustomer dc ON o.CustomerID COLLATE DATABASE_DEFAULT = dc.CustomerID COLLATE DATABASE_DEFAULT
 --       LEFT JOIN dbo.DimEmployee de ON o.EmployeeID = de.EmployeeID
 --       LEFT JOIN dbo.DimProduct  dp ON od.ProductID = dp.ProductID
 --       LEFT JOIN dbo.DimShipper  ds ON o.ShipVia = ds.ShipperID;
 --
--- Nota: revisa el nombre real de la tabla de detalle de orden en tu copia
--- de NorthWind (puede ser "Order Details" con espacio, u "OrderDetails").
+-- Nota 1: la tabla de detalle de orden se llama "OrderDetails" (sin espacio)
+-- en esta copia restaurada de NorthWind.
+--
+-- Nota 2 (importante): NorthWind y NorthWindDW pueden quedar con distinto
+-- collation (confirmado: NorthWind usa Modern_Spanish_CI_AS, NorthWindDW
+-- usa SQL_Latin1_General_CP1_CI_AS). Comparar columnas de texto entre
+-- ambas bases (como CustomerID, que es nchar) sin COLLATE produce el
+-- error "Cannot resolve the collation conflict". Por eso el JOIN con
+-- DimCustomer usa COLLATE DATABASE_DEFAULT en ambos lados, como se ve
+-- arriba. Si te aparece ese mismo error en otro JOIN de texto, aplica el
+-- mismo arreglo ahi.
 
 
 -- Verificacion: cantidad de lineas de venta cargadas, y que coincida

@@ -19,17 +19,19 @@ Pull Request hacia `main`:
   [`analisis/reto1-entender-negocio.md`](./analisis/reto1-entender-negocio.md),
   completa los ETL de [`etl/02_ETL_DimEmployee.sql`](./etl/02_ETL_DimEmployee.sql)
   y [`etl/03_ETL_DimProduct.sql`](./etl/03_ETL_DimProduct.sql) siguiendo el
-  ejemplo ya resuelto en `etl/01_ETL_DimCustomer.sql`, y luego crea un SQL
-  Server Database Project en Visual Studio importando el esquema OLTP ya
-  validado en `oltp/tables/`.
+  ejemplo ya resuelto en `etl/01_ETL_DimCustomer.sql`, completa la vista
+  [`reportes/02_vw_TopClientes.sql`](./reportes/02_vw_TopClientes.sql), y
+  luego crea un SQL Server Database Project en Visual Studio importando el
+  esquema OLTP ya validado en `oltp/tables/`.
 - `feature/justificacion-kevin` (Kevin): responde la justificación del modelo
   en [`analisis/justificacion-modelo-estrella.md`](./analisis/justificacion-modelo-estrella.md),
   completa los ETL de [`etl/04_ETL_DimShipper.sql`](./etl/04_ETL_DimShipper.sql),
   [`etl/05_ETL_DimDate.sql`](./etl/05_ETL_DimDate.sql) y
   [`etl/06_ETL_FactSales.sql`](./etl/06_ETL_FactSales.sql) (el más complejo,
-  ver [`etl/README.md`](./etl/README.md) para el orden correcto), y luego
-  crea un SQL Server Database Project en Visual Studio con las tablas ya
-  validadas en `warehouse/` (staging, dimensiones y hechos).
+  ver [`etl/README.md`](./etl/README.md) para el orden correcto), completa
+  la vista [`reportes/03_vw_VentasPorEmpleado.sql`](./reportes/03_vw_VentasPorEmpleado.sql),
+  y luego crea un SQL Server Database Project en Visual Studio con las
+  tablas ya validadas en `warehouse/` (staging, dimensiones y hechos).
 
 ## Descripción
 
@@ -124,6 +126,12 @@ etl/
 analisis/
 ├── reto1-entender-negocio.md + reto1-queries.sql
 └── justificacion-modelo-estrella.md + comparacion-joins.sql
+
+reportes/
+├── README.md
+├── 01_vw_VentasPorCategoria.sql  (resuelta: sirve de guía)
+├── 02_vw_TopClientes.sql
+└── 03_vw_VentasPorEmpleado.sql
 ```
 
 ## Cómo usar los scripts
