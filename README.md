@@ -7,8 +7,8 @@ Docente: M.Sc. Juan Marcelo Claure Salinas
 ## Integrantes del grupo
 
 - **Angel Christian Flores Lazarte** ([Angel1104](https://github.com/Angel1104)) — diseño del esquema OLTP y del modelo estrella, scripts SQL base, ETL de `DimCustomer` (guía), validación contra SQL Server.
-- **Daniela Zapata** ([DanieZapata](https://github.com/DanieZapata)) — Reto 1 (entender el negocio a través de los datos), ETL de `DimEmployee` y `DimProduct`, proyecto SQL Server (`.sqlproj`) del esquema OLTP.
-- **Kevin** ([kevdev21](https://github.com/kevdev21)) — justificación del diseño del modelo estrella, ETL de `DimShipper`, `DimDate` y `FactSales`, proyecto SQL Server (`.sqlproj`) del warehouse.
+- **[Nombre completo pendiente]** ([DanieZapata](https://github.com/DanieZapata)) — Reto 1 (entender el negocio a través de los datos), ETL de `DimEmployee` y `DimProduct`, proyecto SQL Server (`.sqlproj`) del esquema OLTP.
+- **[Nombre completo pendiente]** ([kevdev21](https://github.com/kevdev21)) — justificación del diseño del modelo estrella, ETL de `DimShipper`, `DimDate` y `FactSales`, proyecto SQL Server (`.sqlproj`) del warehouse.
 
 ## Flujo de trabajo del grupo
 
