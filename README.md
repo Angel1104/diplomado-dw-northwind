@@ -6,9 +6,9 @@ Docente: M.Sc. Juan Marcelo Claure Salinas
 
 ## Integrantes del grupo
 
-- **Angel Christian Flores Lazarte** ([Angel1104](https://github.com/Angel1104)) — diseño del esquema OLTP y del modelo estrella, scripts SQL base, validación contra SQL Server.
-- **Daniela Zapata** ([DanieZapata](https://github.com/DanieZapata)) — Reto 1 (entender el negocio a través de los datos) y proyecto SQL Server (`.sqlproj`) del esquema OLTP.
-- **Kevin** ([kevdev21](https://github.com/kevdev21)) — justificación del diseño del modelo estrella y proyecto SQL Server (`.sqlproj`) del warehouse.
+- **Angel Christian Flores Lazarte** ([Angel1104](https://github.com/Angel1104)) — diseño del esquema OLTP y del modelo estrella, scripts SQL base, ETL de `DimCustomer` (guía), validación contra SQL Server.
+- **Daniela Zapata** ([DanieZapata](https://github.com/DanieZapata)) — Reto 1 (entender el negocio a través de los datos), ETL de `DimEmployee` y `DimProduct`, proyecto SQL Server (`.sqlproj`) del esquema OLTP.
+- **Kevin** ([kevdev21](https://github.com/kevdev21)) — justificación del diseño del modelo estrella, ETL de `DimShipper`, `DimDate` y `FactSales`, proyecto SQL Server (`.sqlproj`) del warehouse.
 
 ## Flujo de trabajo del grupo
 
@@ -16,13 +16,20 @@ Cada integrante trabaja en su propia rama y entrega su parte mediante un
 Pull Request hacia `main`:
 
 - `feature/reto1-dani` (Daniela): responde el análisis de negocio en
-  [`analisis/reto1-entender-negocio.md`](./analisis/reto1-entender-negocio.md)
-  y luego crea un SQL Server Database Project en Visual Studio importando el
-  esquema OLTP ya validado en `oltp/tables/`.
+  [`analisis/reto1-entender-negocio.md`](./analisis/reto1-entender-negocio.md),
+  completa los ETL de [`etl/02_ETL_DimEmployee.sql`](./etl/02_ETL_DimEmployee.sql)
+  y [`etl/03_ETL_DimProduct.sql`](./etl/03_ETL_DimProduct.sql) siguiendo el
+  ejemplo ya resuelto en `etl/01_ETL_DimCustomer.sql`, y luego crea un SQL
+  Server Database Project en Visual Studio importando el esquema OLTP ya
+  validado en `oltp/tables/`.
 - `feature/justificacion-kevin` (Kevin): responde la justificación del modelo
-  en [`analisis/justificacion-modelo-estrella.md`](./analisis/justificacion-modelo-estrella.md)
-  y luego crea un SQL Server Database Project en Visual Studio con las tablas
-  ya validadas en `warehouse/` (staging, dimensiones y hechos).
+  en [`analisis/justificacion-modelo-estrella.md`](./analisis/justificacion-modelo-estrella.md),
+  completa los ETL de [`etl/04_ETL_DimShipper.sql`](./etl/04_ETL_DimShipper.sql),
+  [`etl/05_ETL_DimDate.sql`](./etl/05_ETL_DimDate.sql) y
+  [`etl/06_ETL_FactSales.sql`](./etl/06_ETL_FactSales.sql) (el más complejo,
+  ver [`etl/README.md`](./etl/README.md) para el orden correcto), y luego
+  crea un SQL Server Database Project en Visual Studio con las tablas ya
+  validadas en `warehouse/` (staging, dimensiones y hechos).
 
 ## Descripción
 
@@ -104,6 +111,19 @@ warehouse/
 │   └── 05_DimShipper.sql
 └── hechos/
     └── 01_FactSales.sql
+
+etl/
+├── README.md                     (orden de ejecución y responsables)
+├── 01_ETL_DimCustomer.sql        (resuelto: sirve de guía)
+├── 02_ETL_DimEmployee.sql
+├── 03_ETL_DimProduct.sql
+├── 04_ETL_DimShipper.sql
+├── 05_ETL_DimDate.sql
+└── 06_ETL_FactSales.sql
+
+analisis/
+├── reto1-entender-negocio.md + reto1-queries.sql
+└── justificacion-modelo-estrella.md + comparacion-joins.sql
 ```
 
 ## Cómo usar los scripts
